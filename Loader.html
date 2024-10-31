@@ -47,40 +47,32 @@
 
     <script>
         // Load the HTML code from the provided GitHub link
-        const htmlUrl = 'https://raw.githubusercontent.com/Aldoriahub/Webtest/refs/heads/main/Website.html';
-
+        const htmlUrl = 'https://raw.githubusercontent.com/Aldoriahub/Webtest/refs/heads/main/Website.html'
         // Function to fetch and insert HTML content
-        const loadContent = () => {
-            fetch(htmlUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(htmlContent => {
-                    // Log the content fetched for debugging purposes
-                    console.log('Fetched HTML content:', htmlContent);
-                    // Insert the fetched HTML content into the content div
-                    document.getElementById('content').innerHTML = htmlContent;
-                    // Hide the loader and show the content
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('content').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    // Display an error message to the user
-                    const errorMessage = document.getElementById('error-message');
-                    errorMessage.textContent = 'Failed to load additional resources: ' + error.message;
-                    errorMessage.style.display = 'block'; // Show the error message
-                    document.getElementById('loader').style.display = 'none'; // Hide loader on error
-                });
-        };
-
-        // Show loader and fetch content after a delay of 2 seconds
-        setTimeout(() => {
-            loadContent();
-        }, 2000);
+        fetch(htmlUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(htmlContent => {
+                // Log the content fetched for debugging purposes
+                console.log('Fetched HTML content:', htmlContent);
+                // Insert the fetched HTML content into the content div
+                document.getElementById('content').innerHTML = htmlContent;
+                // Hide the loader and show the content
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                // Display an error message to the user
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.textContent = 'Failed to load additional resources: ' + error.message;
+                errorMessage.style.display = 'block'; // Show the error message
+                document.getElementById('loader').style.display = 'none'; // Hide loader on error
+            });
     </script>
 </body>
 </html>
